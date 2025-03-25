@@ -15,15 +15,15 @@ import utils.DBUtils;
 
 /**
  *
- * @author Admin
+ * @author tungi
  */
 public class BookDAO implements IDAO<BookDTO, String> {
 
     @Override
     public boolean create(BookDTO entity) {
         String sql = "INSERT INTO tblBooks"
-                +"(BookID,Title,Author,PublishYear,Price,Quantity)"
-                +"VALUE (?,?,?,?,?,?)";
+                + " (BookID,Title,Author,PublishYear,Price,Quantity) "
+                + " VALUES (?,?,?,?,?,?)";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -31,11 +31,11 @@ public class BookDAO implements IDAO<BookDTO, String> {
             ps.setString(2, entity.getTitle());
             ps.setString(3, entity.getAuthor());
             ps.setInt(4, entity.getPublishYear());
-            ps.setDouble(5, entity.getPrice() );
+            ps.setDouble(5, entity.getPrice());
             ps.setInt(6, entity.getQuantity());
-            
-            int n = ps.executeUpdate();
-            return n >0;
+
+            int i = ps.executeUpdate();
+            return i > 0;
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -66,25 +66,23 @@ public class BookDAO implements IDAO<BookDTO, String> {
     public List<BookDTO> search(String searchTerm) {
         return null;
     }
-    
-    
-    public List<BookDTO> searchByTitle2(String searchTerm){
-        String sql = "SELECT * FROM tblBooks WHERE title Like ? AND Quantity >0";
+
+    public List<BookDTO> searchByTitle(String searchTerm) {
+        String sql = "SELECT * FROM tblBooks WHERE title LIKE ?";
         List<BookDTO> list = new ArrayList<>();
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, "%" + searchTerm + "%");
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
+            while (rs.next()) {
                 BookDTO book = new BookDTO(
                         rs.getString("BookID"),
                         rs.getString("Title"),
-                         rs.getString("Author"),
-                         rs.getInt("PublishYear"),
-                         rs.getDouble("Price"),
-                         rs.getInt("Quantity")
-                );
+                        rs.getString("Author"),
+                        rs.getInt("PublishYear"),
+                        rs.getDouble("Price"),
+                        rs.getInt("Quantity"));
                 list.add(book);
             }
         } catch (Exception e) {
@@ -92,15 +90,40 @@ public class BookDAO implements IDAO<BookDTO, String> {
         }
         return list;
     }
-    
-    public boolean updateQuantityToZero(String id){
-        String sql ="UPDATE tblBooks SET Quantity = 0 WHERE BookID = ?";
+
+    public List<BookDTO> searchByTitle2(String searchTerm) {
+        String sql = "SELECT * FROM tblBooks WHERE title LIKE ? AND Quantity>0";
+        List<BookDTO> list = new ArrayList<>();
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + searchTerm + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                BookDTO book = new BookDTO(
+                        rs.getString("BookID"),
+                        rs.getString("Title"),
+                        rs.getString("Author"),
+                        rs.getInt("PublishYear"),
+                        rs.getDouble("Price"),
+                        rs.getInt("Quantity"));
+                list.add(book);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return list;
+    }
+
+    public boolean updateQuantityToZero(String id) {
+        String sql = "UPDATE tblBooks SET Quantity=0 WHERE BookID=?";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, id);
+
             int i = ps.executeUpdate();
-            return i> 0;
+            return i > 0;
         } catch (Exception e) {
             System.out.println(e.toString());
         }

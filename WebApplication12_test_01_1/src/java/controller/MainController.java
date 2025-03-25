@@ -5,8 +5,14 @@
  */
 package controller;
 
+import dao.BookDAO;
+import dao.UserDAO;
+import dto.BookDTO;
+import dto.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,34 +21,121 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Admin
+ * @author tungi
  */
 @WebServlet(name = "MainController", urlPatterns = {"/MainController"})
 public class MainController extends HttpServlet {
+    
+    public BookDAO bookDAO = new BookDAO();
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private static final String LOGIN_PAGE = "login.jsp";
+
+    public UserDTO getUser(String strUserID) {
+        UserDAO udao = new UserDAO();
+        UserDTO user = udao.readById(strUserID);
+        return user;
+    }
+
+    public boolean isValidLogin(String strUserID, String strPassword) {
+        UserDTO user = getUser(strUserID);
+        System.out.println(user);
+        return user != null && user.getPassword().equals(strPassword);
+    }
+    public void search(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+          String searchTerm = request.getParameter("searchTerm");
+          if(searchTerm == null){
+              searchTerm = "";
+          }
+          List<BookDTO> books = bookDAO.searchByTitle2(searchTerm);
+          request.setAttribute("books", books);
+          request.setAttribute("searchterm", searchTerm);
+          
+    
+    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MainController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet MainController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String url = LOGIN_PAGE;
+        try {
+            String action = request.getParameter("action");
+            if (action == null) {
+                url = LOGIN_PAGE;
+            } else {
+                if (action.equals("login")) {
+                    String strUserID = request.getParameter("txtUserID");
+                    String strPassword = request.getParameter("txtPassword");
+                    if (isValidLogin(strUserID, strPassword)) {
+                        url = "search.jsp";
+                        UserDTO user = getUser(strUserID);
+                        request.getSession().setAttribute("user", user);
+                        
+                        url ="search.jsp";
+                        search(request, response);
+                    } else {
+                        request.setAttribute("message", "Incorrect UserID or Password");
+                        url = "login.jsp";
+                    }
+                } else if (action.equals("logout")) {
+                    request.getSession().invalidate(); // Hủy session
+                    url ="login.jsp";
+                } else if (action.equals("search")) {
+                    url ="search.jsp";
+                     search(request, response);
+                }else if (action.equals("delete")) {
+                    BookDAO bdao = new BookDAO();
+                    String id = request.getParameter("id");
+                    bdao.updateQuantityToZero(id);
+                    
+                    // search
+                     url ="search.jsp";
+                     search(request, response);
+                }else if(action.equals("add")){
+                    try {
+                        boolean checkError = false;
+                    String bookID = request.getParameter("txtBookID");
+                    String title = request.getParameter("txtTitle");
+                    String author = request.getParameter("txtAuthor");
+                    int publishYear = Integer.parseInt(request.getParameter("txtPublishYear"));
+                    double price = Double.parseDouble(request.getParameter("txtPrice"));
+                    int quantity = Integer.parseInt(request.getParameter("txtQuantity"));
+                    
+                  
+                    
+                    if(bookID==null || bookID.trim().isEmpty()){
+                        checkError = true;
+                        request.setAttribute("txtBookID_error", "Book ID cannot be empty");
+                    }if(quantity < 0){
+                        checkError = true;
+                        request.setAttribute("txtQuantity_error", "Quantity >=0");
+                    }if(title == null ||title.trim().isEmpty()){
+                        checkError = true;
+                        request.setAttribute("txtTitle_error", "title cannot be empty");
+
+                    }
+                    
+                    BookDTO book = new BookDTO(bookID, title, author, publishYear, price, quantity);
+                    if(!checkError){
+                        bookDAO.create(book);
+                        
+                        url="search.jsp";
+                        search(request, response);
+                    }else{
+                        request.setAttribute("book", book);
+                        url = "bookFrom.jsp";
+                    }
+                    } catch (Exception e) {
+                    }
+                 
+                   
+                    
+                }
+            }
+        } catch (Exception e) {
+            log("Error in MainController: " + e.toString());
+        } finally {
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 

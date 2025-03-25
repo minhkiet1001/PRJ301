@@ -4,26 +4,31 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/room-details.jsp</file>
-            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/admin/rooms.jsp</file>
             <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/payment-result.jsp</file>
             <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/src/java/utils/DBUtils.java</file>
-            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/src/java/utils/PasswordUtils.java</file>
-            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/notifications.jsp</file>
             <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/viewBookings.jsp</file>
-            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/admin/contactofuser.jsp</file>
-            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/src/java/dao/NotificationDAO.java</file>
             <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/src/java/controller/RegisterController.java</file>
-            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/admin/dashboard.jsp</file>
             <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/src/java/dto/UserDTO.java</file>
             <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/login-regis.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/src/java/dao/UserDAO.java</file>
+            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/contact.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/src/java/dao/ContactDAO.java</file>
+            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/header.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/footer.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/admin/rooms.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/src/java/utils/PasswordUtils.java</file>
+            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/notifications.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/admin/contactofuser.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/src/java/dao/NotificationDAO.java</file>
+            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/admin/dashboard.jsp</file>
             <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/services.jsp</file>
             <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/src/java/servlet/Notification.java</file>
-            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/src/java/dao/UserDAO.java</file>
             <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/src/java/dto/ContactMessageDTO.java</file>
-            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/contact.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/home.jsp</file>
             <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/admin/statistics.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/src/java/controller/RoomFilterController.java</file>
             <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/src/java/servlet/ContactController.java</file>
-            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/src/java/dao/ContactDAO.java</file>
+            <file>file:/C:/Users/Admin/Downloads/ASSPRJ301-main%20(4)/ASSPRJ301-main/clone_ASSPRJ301_testTT/web/search.jsp</file>
         </group>
     </open-files>
 </project-private>
